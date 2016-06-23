@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="import_shopify_form_view" model="ir.ui.view">
+			<field name="name">import_shopify.form.view</field>
+			<field name="model">import.shopify</field>
+			<field name="arch" type="xml">
+                <form name="shopify cofiguration">
+                    <sheet>
+                        <group string="Shopify Configuration">
+                            <field name="name" required="1" />
+                            <field name="api_key_shopify" required="1" />
+                            <field name="password_shopify" required="1" />
+                            <field name="temp_date_customer" invisible="1"/>
+                            <field name="temp_date_product" invisible="1"/>
+                            <field name="temp_date_sale_order" invisible="1"/>
+                        </group>
+                        <notebook>
+							<page string='Import'>
+                                <group col="4">
+                                    <button name="import_customer" type="object" string="Import Customer" class="oe_highlight"/>
+                                    <field name="last_import_customer" nolabel="1" readonly="1"/>
+                                    <button name="import_product" type="object" string="Import Product and Variants" class="oe_highlight"/>
+                                    <field name="last_import_product" nolabel="1" readonly="1"/>
+
+                                    <button name="import_sale_order" type="object" string="Import Sale Order" class="oe_highlight"/>
+                                    <field name="last_import_sale_order" nolabel="1" readonly="1"/>
+
+                                </group>
+                            </page>
+						</notebook>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+
+        <record id="import_shopify_tree_view" model="ir.ui.view">
+			<field name="name">import.shopify.tree.view</field>
+			<field name="model">import.shopify</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name = "name"/>
+				</tree>
+			</field>
+		</record>
+
+        <record id="action_view_shopify" model="ir.actions.act_window">
+            <field name="name">Shopify</field>
+            <field name="res_model">import.shopify</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+         <menuitem id="menu_main_shopify"
+                   parent="base.menu_administration"
+                   name="Shopify" sequence="14"  />
+        <menuitem id = "abc"
+                  name="Connection"
+                  action="action_view_shopify"
+                  parent="menu_main_shopify" />
+    </data>
+</openerp>
